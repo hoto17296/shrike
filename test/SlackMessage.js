@@ -4,7 +4,10 @@ const sinon = require('sinon');
 
 describe('SlackMessage', () => {
   const bot = {
-    data: { self: { id: 'TESTBOT' } },
+    data: {
+      self: { id: 'TESTBOT' },
+      users: [{ id: 'TESTBOT' }],
+    },
     send: function() {},
   };
 

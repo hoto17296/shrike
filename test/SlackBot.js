@@ -10,9 +10,8 @@ Slack.RtmClient = class extends EventEmitter {
   }
   start() {
     var data = {
-      self: {
-        id: 'TESTBOT',
-      },
+      self: { id: 'TESTBOT' },
+      users: [{ id: 'TESTBOT' }],
       channels: [
         {
           id: 'AAAAAA',
