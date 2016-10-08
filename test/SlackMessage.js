@@ -6,7 +6,8 @@ describe('SlackMessage', () => {
   const bot = {
     data: {
       self: { id: 'TESTBOT' },
-      users: [{ id: 'TESTBOT' }],
+      users: [{ id: 'TESTBOT' }, { id: 'USER1' }],
+      ims: [{ id: 'IMUSER1', user: 'USER1' }],
     },
     send: function() {},
   };
@@ -53,7 +54,15 @@ describe('SlackMessage', () => {
   });
 
   describe('isDirectMessage()', () => {
-    // TODO
+    it('should not match normal message', () => {
+      const msg = messageGenerator('foo');
+      assert( ! msg.isDirectMessage() );
+    });
+
+    it('should match direct message', () => {
+      const msg = messageGenerator({ text: 'foo', channel: 'IMUSER1' });
+      assert( msg.isDirectMessage() );
+    });
   });
 
   describe('send()', () => {

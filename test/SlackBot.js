@@ -11,7 +11,7 @@ Slack.RtmClient = class extends EventEmitter {
   start() {
     var data = {
       self: { id: 'TESTBOT' },
-      users: [{ id: 'TESTBOT' }],
+      users: [{ id: 'TESTBOT' }, { id: 'USER1' }],
       channels: [
         {
           id: 'AAAAAA',
@@ -24,6 +24,7 @@ Slack.RtmClient = class extends EventEmitter {
           is_general: false,
         },
       ],
+      ims: [{ id: 'IMUSER1', user: 'USER1' }],
     };
     process.nextTick(() => {
       this.emit(Slack.CLIENT_EVENTS.RTM.AUTHENTICATED, data);
