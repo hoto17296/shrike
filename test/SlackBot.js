@@ -57,7 +57,7 @@ describe('SlackBot', () => {
   context('setup', () => {
     it('should start connection', (done) => {
       bot = new SlackBot();
-      bot.start(() => {
+      bot.start().then(() => {
         assert(true);
         done();
       });
