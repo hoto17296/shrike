@@ -1,6 +1,6 @@
 {
   "name": "slackbot",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Simple bot framework that optimized for Slack.",
   "author": "hoto17296",
   "license": "MIT",
