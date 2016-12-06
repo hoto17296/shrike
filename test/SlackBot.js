@@ -82,10 +82,29 @@ describe('SlackBot', () => {
       assert( mockWeb.verify() );
     });
 
-    context('channel specified', () => {
+    context('channel name specified', () => {
+      context('specified channel exists', () => {
+        it('should send to specified channel', () => {
+          mock.expects('send').once().withArgs({ channel: 'BBBBBB', text: 'foo', type: Slack.RTM_EVENTS.MESSAGE });
+          bot.send({ text: 'foo', channel: 'other_channel' });
+          assert( mock.verify() );
+        });
+      });
+
+      context('specified channel does not exists', () => {
+        it('should reject method call', (done) => {
+          bot.send({ text: 'foo', channel: 'not_exist_channel' }).catch((err) => {
+            assert.equal(err, 'Channel "not_exist_channel" not found.');
+            done();
+          });
+        });
+      });
+    });
+
+    context('channel id specified', () => {
       it('should send to specified channel', () => {
         mock.expects('send').once().withArgs({ channel: 'BBBBBB', text: 'foo', type: Slack.RTM_EVENTS.MESSAGE });
-        bot.send({ text: 'foo', channel: 'BBBBBB' });
+        bot.send({ text: 'foo', channel_id: 'BBBBBB' });
         assert( mock.verify() );
       });
     });
