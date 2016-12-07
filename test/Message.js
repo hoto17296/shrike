@@ -1,8 +1,8 @@
-const SlackMessage = require('../lib/SlackMessage');
+const Message = require('../lib/Message');
 const assert = require('assert');
 const sinon = require('sinon');
 
-describe('SlackMessage', () => {
+describe('Message', () => {
   const bot = {
     data: {
       self: { id: 'TESTBOT' },
@@ -16,7 +16,7 @@ describe('SlackMessage', () => {
     if ( typeof msg !== 'object' ) msg = { text: msg };
     msg.channel = msg.channel || 'AAAAAA';
     msg.user = msg.user || 'USER1';
-    return new SlackMessage(bot, msg);
+    return new Message(bot, msg);
   }
 
   describe('isMention()', () => {

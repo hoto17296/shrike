@@ -5,7 +5,7 @@
   "author": "hoto17296",
   "license": "MIT",
   "repository": "hoto17296/shrike",
-  "main": "lib/SlackBot.js",
+  "main": "lib/Bot.js",
   "keywords": [
     "shrike",
     "slack",

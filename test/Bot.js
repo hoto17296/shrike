@@ -1,4 +1,4 @@
-const SlackBot = require('../lib/SlackBot');
+const Bot = require('../lib/Bot');
 const Slack = require('@slack/client');
 const EventEmitter = require('events');
 const assert = require('assert');
@@ -36,7 +36,7 @@ Slack.RtmClient = class extends EventEmitter {
   send() {}
 }
 
-describe('SlackBot', () => {
+describe('Bot', () => {
   var bot;
   var mock;
 
@@ -46,7 +46,7 @@ describe('SlackBot', () => {
   }
 
   beforeEach(() => {
-    bot = new SlackBot();
+    bot = new Bot();
     bot.start();
     mock = sinon.mock( Slack.RtmClient.prototype );
   });
@@ -57,7 +57,7 @@ describe('SlackBot', () => {
 
   context('setup', () => {
     it('should start connection', (done) => {
-      bot = new SlackBot();
+      bot = new Bot();
       bot.start().then(() => {
         assert(true);
         done();
