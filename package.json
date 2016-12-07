@@ -4,7 +4,18 @@
   "description": "Simple bot framework that optimized for Slack.",
   "author": "hoto17296",
   "license": "MIT",
+  "repository": "hoto17296/shrike",
   "main": "lib/SlackBot.js",
+  "keywords": [
+    "shrike",
+    "slack",
+    "bot",
+    "chatbot",
+    "ai"
+  ],
+  "engines": {
+    "node": ">= 6"
+  },
   "scripts": {
     "test": "mocha"
   },
