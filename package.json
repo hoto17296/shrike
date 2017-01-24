@@ -1,6 +1,6 @@
 {
   "name": "shrike",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Simple bot framework that optimized for Slack.",
   "author": "hoto17296",
   "license": "MIT",
