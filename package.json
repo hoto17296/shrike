@@ -20,7 +20,7 @@
     "test": "mocha"
   },
   "dependencies": {
-    "@slack/client": "^3.6.0",
+    "@slack/client": "^3.10.0",
     "clone": "^2.0.0"
   },
   "devDependencies": {
