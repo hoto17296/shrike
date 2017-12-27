@@ -5,27 +5,39 @@ const assert = require('assert');
 const sinon = require('sinon');
 
 Slack.RtmClient = class extends EventEmitter {
-  constructor() {
+  constructor(token, opts={}) {
     super();
+    this.opts = opts;
   }
   start() {
-    var data = {
-      self: { id: 'TESTBOT' },
-      users: [{ id: 'TESTBOT' }, { id: 'USER1' }],
-      channels: [
-        {
-          id: 'AAAAAA',
-          name: 'dummy_general',
-          is_general: true,
-        },
-        {
-          id: 'BBBBBB',
-          name: 'other_channel',
-          is_general: false,
-        },
-      ],
-      ims: [{ id: 'IMUSER1', user: 'USER1' }],
-    };
+    if (opts.useRtmConnect) {
+      var data = {
+        ok: true,
+        url: 'wss://localhost/',
+        team: { id: 'TESTTEAM', name: 'TestTeam', domain: 'testteam' },
+        self: { id: 'TESTBOT', name: 'testbot' },
+        scopes: ['identify', 'read', 'post', 'client', 'apps'],
+        acceptedScopes: ['rtm:stream', 'client'],
+      };
+    } else {
+      var data = {
+        self: { id: 'TESTBOT' },
+        users: [{ id: 'TESTBOT' }, { id: 'USER1' }],
+        channels: [
+          {
+            id: 'AAAAAA',
+            name: 'dummy_general',
+            is_general: true,
+          },
+          {
+            id: 'BBBBBB',
+            name: 'other_channel',
+            is_general: false,
+          },
+        ],
+        ims: [{ id: 'IMUSER1', user: 'USER1' }],
+      };
+    }
     process.nextTick(() => {
       this.emit(Slack.CLIENT_EVENTS.RTM.AUTHENTICATED, data);
       process.nextTick(() => {
